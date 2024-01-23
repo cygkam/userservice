@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Release.Name }}-sa
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 8 }}
+      {{- end }}
+      securityContext:
+        fsGroup: 65532
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+        - name: {{ .Release.Name }}
+          {{- if $.Values.image.registry }}
+          image: {{ $.Values.image.registry }}/{{ $.Values.image.repository }}:{{ $.Values.image.tag }}
+          {{- else }}
+          image: {{ $.Values.image.repository }}:{{ $.Values.image.tag }}
+          {{- end }}
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: "PSQL_HOST"
+              value: {{ .Values.psql.host | quote }}
+            - name: "PSQL_PORT"
+              value: {{ .Values.psql.port | quote }}
+            - name: "PSQL_USERNAME"
+              value: {{ .Values.psql.username | quote }}
+            - name: "PSQL_PASSWORD"
+              value: {{ .Values.psql.password | quote }}
+            - name: "PSQL_DB_NAME"
+              value: {{ .Values.psql.db.name | quote }}
+            - name: "PSQL_TIMEZONE"
+              value: {{ .Values.psql.timezone | quote }}
+            - name: "CONFIG_PORT"
+              value: {{ .Values.config.port | quote }}
+            - name: "CACHE_PEER_PORT"
+              value: {{ .Values.cache.peerPort | quote }}
+            - name: "CACHE_POD_IP"
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: "CACHE_DISTRIBUTION_ENABLED"
+              value: "true"
+            - name: "CACHE_POD_SELECTOR"
+              value: "app={{ .Release.Name }}"
+            - name: "CACHE_POD_NAMESPACE"
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          {{- if .Values.resources }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: https-port
+              containerPort: {{ .Values.config.port }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.config.port }}
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.config.port }}
+            initialDelaySeconds: 60
+            periodSeconds: 60

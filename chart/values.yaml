@@ -1,0 +1,37 @@
+cache:
+  ttl: 30
+  peerPort: 9091
+
+psql:
+  host: xxx
+  port: 5432
+  password: xxx
+  username: xxx
+  timezone: "Europe/Warsaw"
+  db:
+    name: "postgres"
+
+config:
+  port: 8080
+
+image:
+  registry: ""
+  repository: "cygkam/user-service"
+  tag: v0.0.2
+imagePullSecrets: {}
+replicas: 3
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: 1Gi
+  requests:
+    cpu: "200m"
+    memory: 500Mi
+
+dns:
+  domain: "svc.cluster.local"
+
+rbac:
+  enabled: true
+  serviceAccountName: ""
