@@ -114,7 +114,7 @@ func updatePeersPool(cp *cachepool.CachePool, infos []gubernator.PeerInfo) {
 		} else {
 			u.Scheme = "http"
 
-			peer := u.String()
+			peer := u.Host
 			logrus.Debugf("Peer found: %v, current instance: %v", peer, info.IsOwner)
 			peers = append(peers, peer)
 		}

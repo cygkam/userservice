@@ -3,7 +3,7 @@ module user-service
 go 1.21.4
 
 require (
-	github.com/cygkam/dcache v0.0.20
+	github.com/cygkam/dcache v0.0.21
 	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-migrate/migrate/v4 v4.17.0
 	github.com/google/uuid v1.5.0

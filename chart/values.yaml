@@ -3,10 +3,10 @@ cache:
   peerPort: 9091
 
 psql:
-  host: xxx
+  host: postgresql-rw.proto-system.svc.cluster.local
   port: 5432
-  password: xxx
-  username: xxx
+  password: superuser
+  username: superuser
   timezone: "Europe/Warsaw"
   db:
     name: "postgres"
@@ -17,7 +17,7 @@ config:
 image:
   registry: ""
   repository: "cygkam/user-service"
-  tag: v0.0.2
+  tag: v0.0.5
 imagePullSecrets: {}
 replicas: 3
 

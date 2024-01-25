@@ -51,7 +51,7 @@ func (us *UserService) GetUser(c context.Context, uuid string) (db.User, error) 
 		return user, nil
 	}
 
-	return user, fmt.Errorf("Error")
+	return user, fmt.Errorf("unexpected error")
 }
 
 func (us *UserService) Fetch(c context.Context, id string) ([]byte, error) {
@@ -64,7 +64,6 @@ func (us *UserService) Fetch(c context.Context, id string) ([]byte, error) {
 	q := db.New(us.DBConnection)
 	user, err := q.GetUser(c, uuid)
 	if err != nil {
-		fmt.Printf("W trakcie: %s\n", err.Error())
 		return nil, err
 	}
 

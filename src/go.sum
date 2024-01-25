@@ -57,8 +57,8 @@ github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
-github.com/cygkam/dcache v0.0.20 h1:62VWaUjEO3ufGcyMqUzadPIQrIVRPKHZyGzCCl9V5sY=
-github.com/cygkam/dcache v0.0.20/go.mod h1:5u1xjlmHGkq3rjpbLdp+/VGwu3XTVeCuYYxBvH0CYbs=
+github.com/cygkam/dcache v0.0.21 h1:jaJsSEluA3mfc2y7dEbuJ7hH80QaEsR/LQ57dpBG5Zs=
+github.com/cygkam/dcache v0.0.21/go.mod h1:5u1xjlmHGkq3rjpbLdp+/VGwu3XTVeCuYYxBvH0CYbs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
